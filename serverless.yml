@@ -1,0 +1,91 @@
+service: vrobots-api-anuncio
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  memorySize: 128
+  timeout: 3
+  stage: dev
+  region: us-east-1
+  environment:
+    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+
+package:
+  excludeDevDependencies: true
+
+custom:
+  secrets: ${file(secrets.${opt:stage, self:provider.stage}.yml)}
+
+functions:
+  anuncio:
+    handler: controllers/anuncioController.api
+    events:
+      - http:
+          path: anuncio
+          method: post
+      - http:
+          path: anuncio/{id}
+          method: get
+      - http:
+          path: anuncio/{id}
+          method: put
+      - http:
+          path: anuncio/{id}
+          method: delete
+
+  # get:
+  #   handler: controllers/get.get
+  #   events:
+  #     - http:
+  #         path: anuncio/{id}
+  #         method: get
+
+  # udpate:
+  #   handler: controllers/udpate.udpate
+  #   events:
+  #     - http:
+  #         path: anuncio/{id}
+  #         method: put
+
+  # delete:
+  #   handler: controllers/delete.delete
+  #   events:
+  #     - http:
+  #         path: anuncio/{id}
+  #         method: delete
+
+  # listByUserId:
+  #   handler: controllers/list.list
+  #   events:
+  #     - http:
+  #         path: anuncio/{id}
+  #         method: get
+
+#resources:
+#  Resources:
+#    ProductsDynamoDbTable:
+#      Type: 'AWS::DynamoDB::Table'
+#      DeletionPolicy: Retain
+#      Properties:
+#        AttributeDefinitions:
+#          -
+#            AttributeName: id
+#            AttributeType: S
+#        KeySchema:
+#          -
+#            AttributeName: id
+#            KeyType: HASH
+#        ProvisionedThroughput:
+#          ReadCapacityUnits: 1
+#          WriteCapacityUnits: 1
+#        TableName: ${self:provider.environment.DYNAMODB_TABLE}

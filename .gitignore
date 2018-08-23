@@ -1,0 +1,11 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+.nyc_output
+logs
+coverage
+secrets-prod.yml

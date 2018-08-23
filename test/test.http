@@ -1,0 +1,13 @@
+POST http://localhost:3000/anuncio HTTP/1.1
+content-type: application/json
+
+{
+    "id": "",
+    "titulo": "Teste de título de anúncio",
+    "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dui leo, egestas at magna ut, consequat ultrices leo. Aenean tellus urna, euismod ac nunc auctor, fermentum congue neque. Proin tortor nisi, tempor nec venenatis et, laoreet venenatis neque. Donec accumsan eu lacus eu placerat. Suspendisse mattis tristique viverra. Praesent finibus in sapien sed mollis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer faucibus fermentum rutrum. Aliquam erat volutpat. Maecenas accumsan ante a quam dapibus faucibus. Maecenas vitae quam ut turpis vestibulum auctor non vel nisi. Sed vel nisi id arcu convallis consectetur id et metus.",
+    "preco": 120 
+}
+
+###
+
+GET http://localhost:3000/anuncio/515406ab-3857-4420-8524-25b77cfa86e0 HTTP/1.1

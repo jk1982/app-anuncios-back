@@ -2,17 +2,17 @@
 
 ## API utilizando NodeJs
 
-API utilizado por um App Android (nativo) e por uma interface web React.
+API consumido por um App Android (nativo) e por uma interface web React.
 
-Frameworks e middlewares utilizados:
+Alguns frameworks e middlewares envolvidos:
 
 - ExpressJs (sempre ele!);
 - Express-validator;
 - Consign;
-- Joi :fa-smile-o:;
-- Morgan :fa-smile-o:;
+- Joi :);
+- Morgan :);
 - Winston (com daily-rotate-file).
 
-AWS-SDK:
+Recursos do AWS-SDK utilizados no projeto:
 - DynamoDb;
 - Cognito (incomming...).

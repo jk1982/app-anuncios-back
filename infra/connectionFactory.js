@@ -7,7 +7,7 @@ function createDBConnection(banco) {
         return mysql.createConnection({
             host: 'localhost',
             user: 'root',
-            password: 'soeusei',
+            password: '',
             database: 'vrobots_mdp'
         });
     }
